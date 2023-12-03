@@ -1,6 +1,7 @@
 ﻿using AdvertisementPortal.Core;
 using AdvertisementPortal.Core.Models.Domains;
 using AdvertisementPortal.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdvertisementPortal.Persistence.Repositories
 {
@@ -14,8 +15,15 @@ namespace AdvertisementPortal.Persistence.Repositories
 		}
 
 		public IEnumerable<Advertisement> GetAdvertisements()
-		{
-			return _context.Advertisements.ToList();
-		}
+			=> _context.Advertisements
+				.Include(a => a.Category)
+				.ToList();
+
+		public Advertisement GetAdvertisement(int advertisementId)
+			=> _context.Advertisements
+				.Include(a => a.Category)
+				.Include(a => a.Comments)
+				.Include(a => a.User)
+				.First(a => a.Id == advertisementId);
 	}
 }

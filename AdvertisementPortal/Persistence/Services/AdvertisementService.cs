@@ -9,14 +9,17 @@ namespace AdvertisementPortal.Persistence.Services
 	{
 		private readonly IUnitOfWork _unitOfWork;
 
-        public AdvertisementService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
-        public IEnumerable<Advertisement> GetAdvertisements()
+		public AdvertisementService(IUnitOfWork unitOfWork)
 		{
-			return _unitOfWork.Advertisement.GetAdvertisements();
+			_unitOfWork = unitOfWork;
 		}
+
+		public IEnumerable<Advertisement> GetAdvertisements()
+			=> _unitOfWork.Advertisement.GetAdvertisements();
+
+		public Advertisement GetAdvertisement(int advertisementId)
+			=> _unitOfWork.Advertisement.GetAdvertisement(advertisementId);
+
+
 	}
 }
