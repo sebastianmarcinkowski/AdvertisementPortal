@@ -36,8 +36,17 @@
 		{
 			<div class="card mb-3">
 				<div class="card-body">
-					<small class="text-muted mt-2">@comment.CommentUserName</small>
-					<p class="card-text">@comment.Content</p>
+
+					<small class="text-muted">
+
+						@comment.CreatedDate.ToString("dd-MM-yyyy")
+						·
+						@comment.CommentUserName
+
+					</small>
+
+					<p class="card-text mt-2">@comment.Content</p>
+
 				</div>
 			</div>
 		}
@@ -49,46 +58,28 @@
 		</div>
 	}
 
-
-
-
-	<div class="card mb-3">
-		<div class="card-header">
-			Featured
+	@if (Model.CurrentUserId != null)
+	{
+		<form>
+			<div class="form-group mb-2">
+				<label for="#" class="mb-2">Tytuł</label>
+				<input type="text" class="form-control" id="#">
+			</div>
+			<div class="form-group mb-2">
+				<label for="#" class="mb-2">Treść</label>
+				<textarea class="form-control" id="#" rows="3"></textarea>
+			</div>
+			<button type="button" class="btn btn-primary mt-1">
+				<i class="fa-solid fa-plus"></i>
+				Dodaj
+			</button>
+		</form>
+	}
+	else
+	{
+		<div class="alert alert-warning mt-3" role="alert">
+			Celem dodania nowego komentarza należy się zalogować!
 		</div>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		</div>
-	</div>
-
-	<div class="card mb-3">
-		<div class="card-header">
-			Featured
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Special title treatment</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		</div>
-	</div>
-
-	<div class="alert alert-warning mt-3" role="alert">
-		Celem dodania nowego komentarza należy się zalogować!
-	</div>
-
-	<form>
-		<div class="form-group mb-2">
-			<label for="#" class="mb-2">Tytuł</label>
-			<input type="text" class="form-control" id="#">
-		</div>
-		<div class="form-group mb-2">
-			<label for="#" class="mb-2">Treść</label>
-			<textarea class="form-control" id="#" rows="3"></textarea>
-		</div>
-		<button type="button" class="btn btn-primary mt-1">
-			<i class="fa-solid fa-plus"></i>
-			Dodaj
-		</button>
-	</form>
+	}
 
 </div>

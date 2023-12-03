@@ -16,6 +16,7 @@ namespace AdvertisementPortal.Core.Converters
 				{
 					Id = comment.Id,
 					Content = comment.Content,
+					CreatedDate = comment.CreatedDate,
 					CommentUserId = comment.UserId,
 					CommentUserName = comment.User.Email
 				});

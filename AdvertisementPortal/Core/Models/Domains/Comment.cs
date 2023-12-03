@@ -10,6 +10,7 @@ namespace AdvertisementPortal.Core.Models.Domains
 		[Display(Name = "Zawartość")]
 		public string Content { get; set; }
 
+		public DateTime CreatedDate { get; set; }
 		public int AdvertisementId { get; set; }
 		public string UserId { get; set; }
 

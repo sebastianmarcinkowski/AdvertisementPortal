@@ -4,6 +4,7 @@
 	{
 		public int Id { get; set; }
 		public string Content { get; set; }
+		public DateTime CreatedDate { get; set; }
 		public string CommentUserId { get; set; }
 		public string CommentUserName { get; set; }
 	}
