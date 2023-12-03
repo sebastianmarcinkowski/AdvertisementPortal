@@ -1,7 +1,7 @@
+using AdvertisementPortal.Core.Services;
 using AdvertisementPortal.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using AdvertisementPortal.Core.Services;
 
 namespace AdvertisementPortal.Controllers
 {

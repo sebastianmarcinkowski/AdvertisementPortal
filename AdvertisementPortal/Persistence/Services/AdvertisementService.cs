@@ -1,7 +1,6 @@
 ﻿using AdvertisementPortal.Core;
 using AdvertisementPortal.Core.Models.Domains;
 using AdvertisementPortal.Core.Services;
-using System.Collections.ObjectModel;
 
 namespace AdvertisementPortal.Persistence.Services
 {

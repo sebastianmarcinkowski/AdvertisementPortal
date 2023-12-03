@@ -16,47 +16,69 @@
 		<div class="row">
 
 			<div class="card card-body m-3 col-4">
+
 				<img class="card-img-top"
-				src="https://communications.gwu.edu/sites/g/files/zaxdzs5371/files/2023-05/template-resize-video.jpg"
-				alt="@advertisementList[i].Title">
+					 src="https://communications.gwu.edu/sites/g/files/zaxdzs5371/files/2023-05/template-resize-video.jpg"
+					 alt="@advertisementList[i].Title">
+
 				<div class="card-body">
+
 					<h5 class="card-title">@advertisementList[i].Title</h5>
+
 					<p class="card-text">
+
 						<small class="text-muted">
+
 							@advertisementList[i].CreatedTime.ToString("dd-MM-yyyy")
 							·
 							@advertisementList[i].Category.Name
+
 						</small>
+
 					</p>
-					<p class="card-text">@advertisementList[i].Content.Substring(0,100)...</p>
+
+					<p class="card-text">@advertisementList[i].Content.Substring(0, 100)...</p>
+
 					<a href="@Url.Action("Index","Advertisement", new { id = advertisementList[i].Id })" class="btn btn-primary">
 						<i class="fa-solid fa-arrow-right"></i>
 						Zobacz szczegóły
 					</a>
+
 				</div>
 			</div>
 
-			@if ((i+1) < advertisementList.Count())
+			@if ((i + 1) < advertisementList.Count())
 			{
 				<div class="card card-body m-3 col-4">
+
 					<img class="card-img-top"
-					src="https://communications.gwu.edu/sites/g/files/zaxdzs5371/files/2023-05/template-resize-video.jpg"
-					alt="@advertisementList[i+1].Title">
+						 src="https://communications.gwu.edu/sites/g/files/zaxdzs5371/files/2023-05/template-resize-video.jpg"
+						 alt="@advertisementList[i+1].Title">
+
 					<div class="card-body">
-						<h5 class="card-title">@advertisementList[i+1].Title</h5>
+
+						<h5 class="card-title">@advertisementList[i + 1].Title</h5>
+
 						<p class="card-text">
+
 							<small class="text-muted">
-								@advertisementList[i+1].CreatedTime.ToString("dd-MM-yyyy")
+
+								@advertisementList[i + 1].CreatedTime.ToString("dd-MM-yyyy")
 								·
-								@advertisementList[i+1].Category.Name
+								@advertisementList[i + 1].Category.Name
 							</small>
+
 						</p>
+
 						<p class="card-text">@advertisementList[i + 1].Content.Substring(0, 100)...</p>
+
 						<a href="@Url.Action("Index","Advertisement", new { id = advertisementList[i+1].Id })" class="btn btn-primary">
 							<i class="fa-solid fa-arrow-right"></i>
 							Zobacz szczegóły
 						</a>
+
 					</div>
+
 				</div>
 			}
 

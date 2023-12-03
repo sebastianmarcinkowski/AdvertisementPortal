@@ -1,6 +1,4 @@
-﻿using AdvertisementPortal.Core.Models.Domains;
-
-namespace AdvertisementPortal.Core.ViewModels
+﻿namespace AdvertisementPortal.Core.ViewModels
 {
 	public class AdvertisementViewModel
 	{
