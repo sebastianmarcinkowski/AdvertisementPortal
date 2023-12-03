@@ -8,5 +8,6 @@ namespace AdvertisementPortal.Core
 		DbSet<Advertisement> Advertisements { get; set; }
 		DbSet<Category> Categories { get; set; }
 		DbSet<Comment> Comments { get; set; }
+		int SaveChanges();
 	}
 }

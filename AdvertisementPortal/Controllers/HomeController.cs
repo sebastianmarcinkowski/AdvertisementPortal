@@ -1,21 +1,28 @@
 using AdvertisementPortal.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using AdvertisementPortal.Core.Services;
 
 namespace AdvertisementPortal.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly IAdvertisementService _advertisementService;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(
+			ILogger<HomeController> logger,
+			IAdvertisementService advertisementService)
 		{
 			_logger = logger;
+			_advertisementService = advertisementService;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			var articles = _advertisementService.GetAdvertisements();
+
+			return View(articles);
 		}
 
 		public IActionResult Privacy()

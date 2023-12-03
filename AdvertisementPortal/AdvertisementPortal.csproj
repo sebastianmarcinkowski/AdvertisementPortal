@@ -16,12 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Services\" />
-    <Folder Include="Core\Repositories\" />
     <Folder Include="DbScripts\" />
     <Folder Include="Persistence\Extensions\" />
-    <Folder Include="Persistence\Services\" />
-    <Folder Include="Persistence\Repositories\" />
   </ItemGroup>
 
 </Project>

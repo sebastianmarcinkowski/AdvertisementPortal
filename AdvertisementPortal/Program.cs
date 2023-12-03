@@ -1,6 +1,8 @@
 using AdvertisementPortal.Core;
 using AdvertisementPortal.Core.Models.Domains;
+using AdvertisementPortal.Core.Services;
 using AdvertisementPortal.Persistence;
+using AdvertisementPortal.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 var app = builder.Build();
 
