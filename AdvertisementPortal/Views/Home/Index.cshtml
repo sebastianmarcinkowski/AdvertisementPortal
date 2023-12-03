@@ -22,7 +22,7 @@
 				alt="@advertisementList[i].Title">
 				<div class="card-body">
 					<h5 class="card-title">@advertisementList[i].Title</h5>
-					<p class="card-text">@advertisementList[i].Content</p>
+					<p class="card-text">@advertisementList[i].Content.Substring(0,100)...</p>
 					<a href="#" class="btn btn-primary">Zobacz szczegóły</a>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 					alt="@advertisementList[i+1].Title">
 					<div class="card-body">
 						<h5 class="card-title">@advertisementList[i+1].Title</h5>
-						<p class="card-text">@advertisementList[i+1].Content</p>
+						<p class="card-text">@advertisementList[i + 1].Content.Substring(0, 100)...</p>
 						<a href="#" class="btn btn-primary">Zobacz szczegóły</a>
 					</div>
 				</div>
