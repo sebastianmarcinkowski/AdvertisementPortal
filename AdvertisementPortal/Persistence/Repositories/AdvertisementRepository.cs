@@ -14,17 +14,17 @@ namespace AdvertisementPortal.Persistence.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<Advertisement> GetAdvertisements()
-			=> _context.Advertisements
-				.Include(a => a.Category)
-				.ToList();
-
 		public Advertisement GetAdvertisement(int advertisementId)
 			=> _context.Advertisements
 				.Include(a => a.Category)
 				.Include(a => a.Comments)
 				.Include(a => a.User)
 				.First(a => a.Id == advertisementId);
+
+		public IEnumerable<Advertisement> GetAdvertisements()
+			=> _context.Advertisements
+				.Include(a => a.Category)
+				.ToList();
 
 		public void Delete(int id, string userId)
 		{

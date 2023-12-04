@@ -4,8 +4,8 @@ namespace AdvertisementPortal.Core.Services
 {
 	public interface IAdvertisementService
 	{
-		IEnumerable<Advertisement> GetAdvertisements();
 		Advertisement GetAdvertisement(int advertisementId);
+		IEnumerable<Advertisement> GetAdvertisements();
 		void Delete(int id, string userId);
 	}
 }

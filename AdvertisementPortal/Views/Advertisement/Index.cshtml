@@ -6,9 +6,20 @@
 
 <div class="container col-8">
 
-	<img class="img-fluid mb-2 mt-2" src="https://warsawtour.pl/wp-content/uploads/2023/03/Panorama-Warszawy-z-Widok-Towers-fot.-Filip-Kwiatkowski-1.jpg" alt="@Model.Title">
+
+
+
+	<img class="img-fluid mb-2 mt-2"
+		 src="https://warsawtour.pl/wp-content/uploads/2023/03/Panorama-Warszawy-z-Widok-Towers-fot.-Filip-Kwiatkowski-1.jpg"
+		 alt="@Model.Title">
+
+
+
 
 	<h1>@Model.Title</h1>
+
+
+
 
 	<small class="text-muted">
 
@@ -20,20 +31,34 @@
 
 		@if (Model.AdvertisementUserId == Model.CurrentUserId)
 		{
-			<a href="@Url.Action("Edit","Advertisement", new { id = Model.Id })" class="btn btn-primary btn-sm text-ligh mx-1">
+			<a href="@Url.Action("Edit","Advertisement",
+					new { id = Model.Id })"
+			   class="btn btn-primary btn-sm text-ligh mx-1">
+
 				<i class="fa-solid fa-pen-to-square"></i>
 				Usuń
+
 			</a>
 
-			<a href="@Url.Action("Delete","Advertisement", new { id = Model.Id })" class="btn btn-danger btn-sm text-ligh mx-1">
+			<a href="@Url.Action("Delete","Advertisement",
+					new { id = Model.Id })"
+			   class="btn btn-danger btn-sm text-ligh mx-1">
+
 				<i class="fa-solid fa-trash"></i>
 				Usuń
+
 			</a>
 		}
 
 	</small>
 
+
+
+
 	<p class="text-justify mt-3">@Model.Content</p>
+
+
+
 
 	@if (Model.Comments != null && Model.Comments.Any())
 	{
@@ -50,10 +75,13 @@
 
 						@if (comment.CommentUserId == Model.CurrentUserId)
 						{
-							<a href="@Url.Action("Delete","Comment", new { id = comment.Id, advertisementId = Model.Id })"
+							<a href="@Url.Action("Delete","Comment",
+									new { id = comment.Id, advertisementId = Model.Id })"
 							   class="btn btn-danger btn-sm text-ligh mx-1">
+
 								<i class="fa-solid fa-trash"></i>
 								Usuń
+
 							</a>
 						}
 
@@ -72,6 +100,9 @@
 		</div>
 	}
 
+
+
+
 	@if (Model.CurrentUserId != null)
 	{
 		using (Html.BeginForm("Add", "Comment"))
@@ -83,9 +114,12 @@
 			@Html.LabelFor(x => x.CommentContent, new { @class = "mb-2" })
 			@Html.TextAreaFor(x => x.CommentContent, new { @class = "form-control mb-2" })
 
-			<button type="submit" class="btn btn-primary mt-1">
+			<button type="submit"
+					class="btn btn-primary mt-1">
+
 				<i class="fa-solid fa-plus"></i>
 				Dodaj
+
 			</button>
 
 		}
@@ -96,5 +130,8 @@
 			Celem dodania nowego komentarza należy się zalogować!
 		</div>
 	}
+
+
+
 
 </div>

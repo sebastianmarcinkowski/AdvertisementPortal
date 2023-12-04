@@ -5,7 +5,10 @@ namespace AdvertisementPortal.Core.Converters
 {
 	public static class AdvertisementConverter
 	{
-		public static AdvertisementViewModel ToViewModel(this Advertisement model, string userId, IEnumerable<Comment> comments)
+		public static AdvertisementViewModel ToViewModel(
+			this Advertisement model,
+			string userId,
+			IEnumerable<Comment> comments)
 		{
 			var commentsViewModel = new List<CommentViewModel>();
 

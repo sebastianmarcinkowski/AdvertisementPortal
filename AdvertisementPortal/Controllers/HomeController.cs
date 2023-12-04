@@ -7,14 +7,10 @@ namespace AdvertisementPortal.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
 		private readonly IAdvertisementService _advertisementService;
 
-		public HomeController(
-			ILogger<HomeController> logger,
-			IAdvertisementService advertisementService)
+		public HomeController(IAdvertisementService advertisementService)
 		{
-			_logger = logger;
 			_advertisementService = advertisementService;
 		}
 

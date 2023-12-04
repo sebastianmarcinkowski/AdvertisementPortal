@@ -4,8 +4,8 @@ namespace AdvertisementPortal.Core.Repositories
 {
 	public interface IAdvertisementRepository
 	{
-		IEnumerable<Advertisement> GetAdvertisements();
 		Advertisement GetAdvertisement(int advertisementId);
+		IEnumerable<Advertisement> GetAdvertisements();
 		void Delete(int id, string userId);
 	}
 }
