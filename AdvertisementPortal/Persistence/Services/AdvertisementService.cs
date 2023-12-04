@@ -19,6 +19,10 @@ namespace AdvertisementPortal.Persistence.Services
 		public Advertisement GetAdvertisement(int advertisementId)
 			=> _unitOfWork.Advertisement.GetAdvertisement(advertisementId);
 
-
+		public void Delete(int id, string userId)
+		{
+			_unitOfWork.Advertisement.Delete(id, userId);
+			_unitOfWork.Complete();
+		}
 	}
 }

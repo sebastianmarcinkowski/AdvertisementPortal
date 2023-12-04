@@ -20,10 +20,15 @@
 
 		@if (Model.AdvertisementUserId == Model.CurrentUserId)
 		{
-			<button type="button" class="btn btn-primary btn-sm text-light">
+			<a href="@Url.Action("Edit","Advertisement", new { id = Model.Id })" class="btn btn-primary btn-sm text-ligh mx-1">
 				<i class="fa-solid fa-pen-to-square"></i>
-				Edycja
-			</button>
+				Usuń
+			</a>
+
+			<a href="@Url.Action("Delete","Advertisement", new { id = Model.Id })" class="btn btn-danger btn-sm text-ligh mx-1">
+				<i class="fa-solid fa-trash"></i>
+				Usuń
+			</a>
 		}
 
 	</small>
@@ -43,6 +48,15 @@
 						·
 						@comment.CommentUserName
 
+						@if (comment.CommentUserId == Model.CurrentUserId)
+						{
+							<a href="@Url.Action("Delete","Comment", new { id = comment.Id, advertisementId = Model.Id })"
+							   class="btn btn-danger btn-sm text-ligh mx-1">
+								<i class="fa-solid fa-trash"></i>
+								Usuń
+							</a>
+						}
+
 					</small>
 
 					<p class="card-text mt-2">@comment.Content</p>
@@ -60,24 +74,21 @@
 
 	@if (Model.CurrentUserId != null)
 	{
-		<form>
+		using (Html.BeginForm("Add", "Comment"))
+		{
+			@Html.AntiForgeryToken()
 
-			<div class="form-group mb-2">
-				<label for="#" class="mb-2">Tytuł</label>
-				<input type="text" class="form-control" id="#">
-			</div>
+			@Html.HiddenFor(x => x.Id)
 
-			<div class="form-group mb-2">
-				<label for="#" class="mb-2">Treść</label>
-				<textarea class="form-control" id="#" rows="3"></textarea>
-			</div>
+			@Html.LabelFor(x => x.CommentContent, new { @class = "mb-2" })
+			@Html.TextAreaFor(x => x.CommentContent, new { @class = "form-control mb-2" })
 
-			<button type="button" class="btn btn-primary mt-1">
+			<button type="submit" class="btn btn-primary mt-1">
 				<i class="fa-solid fa-plus"></i>
 				Dodaj
 			</button>
 
-		</form>
+		}
 	}
 	else
 	{

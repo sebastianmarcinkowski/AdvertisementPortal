@@ -6,5 +6,6 @@ namespace AdvertisementPortal.Core.Services
 	{
 		IEnumerable<Advertisement> GetAdvertisements();
 		Advertisement GetAdvertisement(int advertisementId);
+		void Delete(int id, string userId);
 	}
 }

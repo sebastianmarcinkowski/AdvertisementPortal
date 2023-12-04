@@ -9,22 +9,28 @@ namespace AdvertisementPortal.Controllers
 	public class AdvertisementController : Controller
 	{
 		private readonly IAdvertisementService _advertisementService;
+		private readonly ICommentService _commentService;
 
-		public AdvertisementController(IAdvertisementService advertisementService)
+		public AdvertisementController(
+			IAdvertisementService advertisementService,
+			ICommentService commentService)
 		{
 			_advertisementService = advertisementService;
+			_commentService = commentService;
 		}
 
 		public IActionResult Index(int id)
 		{
-			var advertisementId = id;
 			AdvertisementViewModel advertisement = new AdvertisementViewModel();
 
 			try
 			{
 				advertisement = _advertisementService
-					.GetAdvertisement(advertisementId)
-					.ToViewModel(User.GetUserId());
+					.GetAdvertisement(id)
+					.ToViewModel(
+						User.GetUserId(),
+						_commentService.GetComments(id)
+						);
 			}
 			catch (Exception)
 			{
@@ -32,6 +38,20 @@ namespace AdvertisementPortal.Controllers
 			}
 
 			return View(advertisement);
+		}
+
+		public IActionResult Delete(int id)
+		{
+			try
+			{
+				_advertisementService.Delete(id, User.GetUserId());
+			}
+			catch (Exception)
+			{
+				return RedirectToAction("Index", "Advertisement", new { id = id });
+			}
+
+			return RedirectToAction("Index", "Home");
 		}
 	}
 }

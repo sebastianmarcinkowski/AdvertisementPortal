@@ -1,18 +1,17 @@
 ﻿using AdvertisementPortal.Core.Models.Domains;
 using AdvertisementPortal.Core.ViewModels;
-using System.Collections.ObjectModel;
 
 namespace AdvertisementPortal.Core.Converters
 {
 	public static class AdvertisementConverter
 	{
-		public static AdvertisementViewModel ToViewModel(this Advertisement model, string userId)
+		public static AdvertisementViewModel ToViewModel(this Advertisement model, string userId, IEnumerable<Comment> comments)
 		{
-			var comments = new Collection<CommentViewModel>();
+			var commentsViewModel = new List<CommentViewModel>();
 
-			foreach (var comment in model.Comments)
+			foreach (var comment in comments)
 			{
-				comments.Add(new CommentViewModel
+				commentsViewModel.Add(new CommentViewModel
 				{
 					Id = comment.Id,
 					Content = comment.Content,
@@ -33,7 +32,18 @@ namespace AdvertisementPortal.Core.Converters
 				AdvertisementUserId = model.UserId,
 				CurrentUserId = userId,
 				AdvertisementUserName = model.User.Email,
-				Comments = comments
+				Comments = commentsViewModel
+			};
+		}
+
+		public static Comment NewComment(this AdvertisementViewModel model, string userId)
+		{
+			return new Comment
+			{
+				Content = model.CommentContent,
+				AdvertisementId = model.Id,
+				UserId = userId,
+				CreatedDate = DateTime.Now
 			};
 		}
 	}

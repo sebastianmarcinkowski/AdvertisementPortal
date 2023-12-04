@@ -25,5 +25,17 @@ namespace AdvertisementPortal.Persistence.Repositories
 				.Include(a => a.Comments)
 				.Include(a => a.User)
 				.First(a => a.Id == advertisementId);
+
+		public void Delete(int id, string userId)
+		{
+			var advertisementToDelete = _context.Advertisements
+				.Include(a => a.Comments)
+				.First(
+				a => a.Id == id
+				&&
+				a.UserId == userId);
+
+			_context.Advertisements.Remove(advertisementToDelete);
+		}
 	}
 }

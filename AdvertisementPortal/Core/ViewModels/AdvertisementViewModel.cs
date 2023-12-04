@@ -1,4 +1,6 @@
-﻿namespace AdvertisementPortal.Core.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AdvertisementPortal.Core.ViewModels
 {
 	public class AdvertisementViewModel
 	{
@@ -13,5 +15,7 @@
 		public string CurrentUserId { get; set; }
 		public string AdvertisementUserName { get; set; }
 
+		[Display(Name = "Zawartość komentarza")]
+		public string CommentContent { get; set; }
 	}
 }
