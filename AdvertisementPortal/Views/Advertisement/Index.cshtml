@@ -25,7 +25,7 @@
 
 		@Model.CreatedTime.ToString("dd-MM-yyyy")
 		·
-		@Model.CategoryName
+		@Model.Category.Name
 		·
 		@Model.AdvertisementUserName
 
@@ -109,16 +109,17 @@
 		{
 			@Html.AntiForgeryToken()
 
+			@Html.ValidationMessageFor(x => x.CommentContent, "", new { @class = "text-danger" })
+
 			@Html.HiddenFor(x => x.Id)
 
-			@Html.LabelFor(x => x.CommentContent, new { @class = "mb-2" })
-			@Html.TextAreaFor(x => x.CommentContent, new { @class = "form-control mb-2" })
+			@Html.TextAreaFor(x => x.CommentContent, new { @class = "form-control mt-3 mb-2", @placeholder = "Zacznij pisać..." })
 
 			<button type="submit"
 					class="btn btn-primary mt-1">
 
 				<i class="fa-solid fa-plus"></i>
-				Dodaj
+				Dodaj komentarz
 
 			</button>
 

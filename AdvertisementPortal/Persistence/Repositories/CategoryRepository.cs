@@ -1,4 +1,5 @@
 ﻿using AdvertisementPortal.Core;
+using AdvertisementPortal.Core.Models.Domains;
 using AdvertisementPortal.Core.Repositories;
 
 namespace AdvertisementPortal.Persistence.Repositories
@@ -11,5 +12,8 @@ namespace AdvertisementPortal.Persistence.Repositories
 		{
 			_context = context;
 		}
+
+		public IEnumerable<Category> GetCategories()
+			=> _context.Categories.ToList();
 	}
 }

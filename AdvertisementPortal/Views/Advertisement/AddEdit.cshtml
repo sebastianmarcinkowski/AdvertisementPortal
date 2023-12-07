@@ -1,0 +1,41 @@
+﻿@model AdvertisementPortal.Core.ViewModels.AdvertisementViewModel
+
+@{
+	ViewData["Title"] = Model.ViewHeading;
+}
+
+<h1>@Model.ViewHeading</h1>
+
+@using (Html.BeginForm("AddEdit", "Advertisement"))
+{
+	@Html.AntiForgeryToken()
+
+	@Html.HiddenFor(m => m.Id)
+
+	<div class="form-group">
+		@Html.LabelFor(m => m.Title, new { @class = "mb-2" })
+		@Html.TextBoxFor(m => m.Title, new { @class = "form-control mb-2" })
+		@Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(m => m.Content, new { @class = "mb-2" })
+		@Html.TextAreaFor(m => m.Content, new { @class = "form-control mb-2 min-h-250px" })
+		@Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(x => x.Category.Id, new { @class = "mb-2" })
+		@Html.DropDownListFor(x => x.Category.Id,
+				new SelectList(Model.Categories, "Id", "Name"),
+				new { @class = "form-control mb-2" })
+	</div>
+
+	<button type="submit"
+			class="btn btn-primary mt-1">
+
+		<i class="fa-solid fa-plus"></i>
+		Dodaj
+
+	</button>
+}

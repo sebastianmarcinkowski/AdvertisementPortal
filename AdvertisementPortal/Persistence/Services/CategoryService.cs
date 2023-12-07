@@ -1,4 +1,5 @@
 ﻿using AdvertisementPortal.Core;
+using AdvertisementPortal.Core.Models.Domains;
 using AdvertisementPortal.Core.Services;
 
 namespace AdvertisementPortal.Persistence.Services
@@ -10,6 +11,11 @@ namespace AdvertisementPortal.Persistence.Services
 		public CategoryService(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
+		}
+
+		public IEnumerable<Category> GetCategories()
+		{
+			return _unitOfWork.Category.GetCategories();
 		}
 	}
 }

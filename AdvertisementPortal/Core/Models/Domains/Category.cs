@@ -10,9 +10,11 @@ namespace AdvertisementPortal.Core.Models.Domains
 			Advertisements = new Collection<Advertisement>();
 		}
 
+		[Required(ErrorMessage = "Pole Kategoria jest wymagane.")]
+		[Display(Name = "Kategoria")]
 		public int Id { get; set; }
 
-		[Required(ErrorMessage = "Pole Tytuł jest wymagane.")]
+		[Required(ErrorMessage = "Pole Nazwa jest wymagane.")]
 		[Display(Name = "Nazwa")]
 		public string Name { get; set; }
 

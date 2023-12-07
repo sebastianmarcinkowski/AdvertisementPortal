@@ -1,6 +1,9 @@
-﻿namespace AdvertisementPortal.Core.Services
+﻿using AdvertisementPortal.Core.Models.Domains;
+
+namespace AdvertisementPortal.Core.Services
 {
 	public interface ICategoryService
 	{
+		IEnumerable<Category> GetCategories();
 	}
 }

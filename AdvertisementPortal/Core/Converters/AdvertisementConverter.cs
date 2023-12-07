@@ -8,7 +8,8 @@ namespace AdvertisementPortal.Core.Converters
 		public static AdvertisementViewModel ToViewModel(
 			this Advertisement model,
 			string userId,
-			IEnumerable<Comment> comments)
+			IEnumerable<Comment> comments,
+			IEnumerable<Category> categories)
 		{
 			var commentsViewModel = new List<CommentViewModel>();
 
@@ -31,7 +32,8 @@ namespace AdvertisementPortal.Core.Converters
 				Content = model.Content,
 				CreatedTime = model.CreatedTime,
 				LastUpdatedTime = model.LastUpdatedTime,
-				CategoryName = model.Category.Name,
+				Category = model.Category,
+				Categories = categories,
 				AdvertisementUserId = model.UserId,
 				CurrentUserId = userId,
 				AdvertisementUserName = model.User.Email,

@@ -8,11 +8,19 @@ namespace AdvertisementPortal.Controllers
 {
 	public class CommentController : Controller
 	{
-		private readonly ICommentService _commentService;
 
-		public CommentController(ICommentService commentService)
+		private readonly IAdvertisementService _advertisementService;
+		private readonly ICommentService _commentService;
+		private readonly ICategoryService _categoryService;
+
+		public CommentController(
+			IAdvertisementService advertisementService,
+			ICommentService commentService,
+			ICategoryService categoryService)
 		{
 			_commentService = commentService;
+			_advertisementService = advertisementService;
+			_categoryService = categoryService;
 		}
 
 		[HttpPost]
@@ -23,15 +31,30 @@ namespace AdvertisementPortal.Controllers
 			ModelState.Remove("Content");
 			ModelState.Remove("CreatedTime");
 			ModelState.Remove("LastUpdatedTime");
-			ModelState.Remove("CategoryName");
+			ModelState.Remove("Category");
+			ModelState.Remove("Categories");
 			ModelState.Remove("Comments");
 			ModelState.Remove("AdvertisementUserId");
 			ModelState.Remove("CurrentUserId");
 			ModelState.Remove("AdvertisementUserName");
+			ModelState.Remove("ViewHeading");
 
 
 			if (!ModelState.IsValid)
-				return RedirectToAction("Index", "Advertisement", new { id = advertisement.Id });
+			{
+				var advertisementViewModel = _advertisementService
+					.GetAdvertisement(advertisement.Id)
+					.ToViewModel(
+						User.GetUserId(),
+						_commentService.GetComments(advertisement.Id),
+						_categoryService.GetCategories()
+						);
+
+				advertisementViewModel.CommentContent = advertisement.CommentContent;
+
+				return View("~/Views/Advertisement/Index.cshtml", advertisementViewModel);
+			}
+
 
 			var comment = advertisement.NewComment(User.GetUserId());
 			_commentService.Add(comment);
