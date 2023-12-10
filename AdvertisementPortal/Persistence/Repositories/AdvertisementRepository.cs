@@ -26,8 +26,9 @@ namespace AdvertisementPortal.Persistence.Repositories
 			int categoryId = 0)
 		{
 
-			 IQueryable<Advertisement> advertisements = _context.Advertisements
-						.Include(a => a.Category);
+			IQueryable<Advertisement> advertisements = _context.Advertisements
+					   .Include(a => a.Category)
+					   .Include(a => a.User);
 
 			if (!string.IsNullOrWhiteSpace(title))
 				advertisements = advertisements.Where(a => a.Title.Contains(title));
