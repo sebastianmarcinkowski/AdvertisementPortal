@@ -66,6 +66,9 @@ namespace AdvertisementPortal.Controllers
 							new Collection<Comment>(),
 							_categoryService.GetCategories()
 							);
+
+					if (advertisement.AdvertisementUserId != User.GetUserId())
+						return RedirectToAction("Index", "Home");
 				}
 				catch (Exception)
 				{
@@ -87,6 +90,15 @@ namespace AdvertisementPortal.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult AddEdit(AdvertisementViewModel advertisement)
 		{
+			ModelState.Remove("Comments");
+			ModelState.Remove("Categories");
+			ModelState.Remove("ViewHeading");
+			ModelState.Remove("CurrentUserId");
+			ModelState.Remove("CommentContent");
+			ModelState.Remove("AdvertisementUserId");
+			ModelState.Remove("AdvertisementUserName");
+			ModelState.Remove("Category.Name");
+
 			if (!ModelState.IsValid)
 			{
 				advertisement.ViewHeading = "Dodawanie artykułu";
@@ -95,15 +107,14 @@ namespace AdvertisementPortal.Controllers
 				return View(advertisement);
 			}
 
-			//	if (advertisement.Id == 0)
-			//	{
-			//		advertisement.AdvertisementUserId = User.GetUserId();
-			//		_advertisementService.Add(advertisement);
-			//	}
-			//	else
-			//	{
-			//		_advertisementService.Update(advertisement);
-			//	}
+			if (advertisement.Id == 0)
+			{
+				_advertisementService.Add(advertisement.NewAdvertisement(User.GetUserId()));
+			}
+			else
+			{
+				_advertisementService.Update(advertisement.UpdateAdvertisement(), User.GetUserId());
+			}
 
 			return RedirectToAction("Index", "Home");
 		}

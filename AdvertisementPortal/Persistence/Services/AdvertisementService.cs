@@ -19,6 +19,18 @@ namespace AdvertisementPortal.Persistence.Services
 		public IEnumerable<Advertisement> GetAdvertisements()
 			=> _unitOfWork.Advertisement.GetAdvertisements();
 
+		public void Add(Advertisement advertisement)
+		{
+			_unitOfWork.Advertisement.Add(advertisement);
+			_unitOfWork.Complete();
+		}
+
+		public void Update(Advertisement advertisement, string userId)
+		{
+			_unitOfWork.Advertisement.Update(advertisement, userId);
+			_unitOfWork.Complete();
+		}
+
 		public void Delete(int id, string userId)
 		{
 			_unitOfWork.Advertisement.Delete(id, userId);

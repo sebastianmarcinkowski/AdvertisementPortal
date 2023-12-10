@@ -26,7 +26,7 @@ namespace AdvertisementPortal.Core.Models.Domains
 
 		public DateTime CreatedTime { get; set; }
 		public DateTime? LastUpdatedTime { get; set; }
-		public byte[] Image { get; set; }
+		public byte[]? Image { get; set; }
 		public string UserId { get; set; }
 
 		public Category Category { get; set; }

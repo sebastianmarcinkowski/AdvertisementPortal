@@ -41,6 +41,32 @@ namespace AdvertisementPortal.Core.Converters
 			};
 		}
 
+		public static Advertisement NewAdvertisement(this AdvertisementViewModel model, string userId)
+		{
+			return new Advertisement
+			{
+				Title = model.Title,
+				Content = model.Content,
+				CategoryId = model.Category.Id,
+				CreatedTime = DateTime.Now,
+				LastUpdatedTime = null,
+				UserId = userId
+			};
+		}
+
+		public static Advertisement UpdateAdvertisement(this AdvertisementViewModel model)
+		{
+			return new Advertisement
+			{
+				Id = model.Id,
+				Title = model.Title,
+				Content = model.Content,
+				CategoryId = model.Category.Id,
+				LastUpdatedTime = DateTime.Now,
+				UserId = model.AdvertisementUserId
+			};
+		}
+
 		public static Comment NewComment(this AdvertisementViewModel model, string userId)
 		{
 			return new Comment

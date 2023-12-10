@@ -26,6 +26,25 @@ namespace AdvertisementPortal.Persistence.Repositories
 				.Include(a => a.Category)
 				.ToList();
 
+		public void Add(Advertisement advertisement)
+			=> _context.Advertisements.Add(advertisement);
+
+		public void Update(Advertisement advertisement, string userId)
+		{
+			var advertisementToUpdate = _context.Advertisements
+				.First(
+					a => a.Id == advertisement.Id
+					&&
+					a.UserId == userId);
+
+			advertisementToUpdate.Title = advertisement.Title;
+			advertisementToUpdate.Content = advertisement.Content;
+			advertisementToUpdate.CategoryId = advertisement.CategoryId;
+			advertisementToUpdate.LastUpdatedTime = advertisement.LastUpdatedTime;
+
+			_context.Advertisements.Update(advertisementToUpdate);
+		}
+
 		public void Delete(int id, string userId)
 		{
 			var advertisementToDelete = _context.Advertisements

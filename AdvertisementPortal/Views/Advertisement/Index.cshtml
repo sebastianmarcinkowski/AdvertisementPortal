@@ -23,7 +23,18 @@
 
 	<small class="text-muted">
 
+		@{
+			var lastUpdatedTime =
+			Model.LastUpdatedTime != null
+			?
+			"· Edytowano " + Model.LastUpdatedTime?.ToString("dd-MM-yyyy")
+			:
+			"";
+		}
+
+
 		@Model.CreatedTime.ToString("dd-MM-yyyy")
+		@lastUpdatedTime
 		·
 		@Model.Category.Name
 		·
@@ -31,12 +42,12 @@
 
 		@if (Model.AdvertisementUserId == Model.CurrentUserId)
 		{
-			<a href="@Url.Action("Edit","Advertisement",
+			<a href="@Url.Action("AddEdit","Advertisement",
 					new { id = Model.Id })"
 			   class="btn btn-primary btn-sm text-ligh mx-1">
 
 				<i class="fa-solid fa-pen-to-square"></i>
-				Usuń
+				Edytuj
 
 			</a>
 

@@ -32,10 +32,17 @@
 	</div>
 
 	<button type="submit"
-			class="btn btn-primary mt-1">
+	class="btn btn-primary mt-1">
 
-		<i class="fa-solid fa-plus"></i>
-		Dodaj
+		@if (Model.Id == 0){
+			<i class="fa-solid fa-plus"></i>
+			@:Dodaj
+		}
+		else
+		{
+			<i class="fa-solid fa-edit"></i>
+			@:Edytuj
+		}
 
 	</button>
 }

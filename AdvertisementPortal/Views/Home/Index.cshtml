@@ -32,7 +32,18 @@
 
 						<small class="text-muted">
 
+							@{
+								var lastUpdatedTime =
+								advertisementList[i].LastUpdatedTime != null
+								?
+								"· Edytowano " + advertisementList[i].LastUpdatedTime?.ToString("dd-MM-yyyy")
+								:
+								"";
+							}
+
+
 							@advertisementList[i].CreatedTime.ToString("dd-MM-yyyy")
+							@lastUpdatedTime
 							·
 							@advertisementList[i].Category.Name
 
@@ -40,7 +51,20 @@
 
 					</p>
 
-					<p class="card-text">@advertisementList[i].Content.Substring(0, 100)...</p>
+					<p class="card-text">
+
+						@{
+							var content =
+							advertisementList[i].Content.Length > 100
+							?
+							advertisementList[i].Content.Substring(0, 100)
+							:
+							advertisementList[i].Content;
+						}
+
+						@content
+
+					</p>
 
 					<a href="@Url.Action("Index","Advertisement",
 							new { id = advertisementList[i].Id })"
@@ -74,14 +98,37 @@
 
 							<small class="text-muted">
 
+								@{
+									lastUpdatedTime =
+									advertisementList[i + 1].LastUpdatedTime != null
+									?
+									"· Edytowano " + advertisementList[i + 1].LastUpdatedTime?.ToString("dd-MM-yyyy")
+									:
+									"";
+								}
+
+
 								@advertisementList[i + 1].CreatedTime.ToString("dd-MM-yyyy")
+								@lastUpdatedTime
 								·
 								@advertisementList[i + 1].Category.Name
 							</small>
 
 						</p>
+						<p class="card-text">
 
-						<p class="card-text">@advertisementList[i + 1].Content.Substring(0, 100)...</p>
+							@{
+								content =
+								advertisementList[i + 1].Content.Length > 100
+								?
+								advertisementList[i + 1].Content.Substring(0, 100)
+								:
+								advertisementList[i + 1].Content;
+							}
+
+							@content
+
+						</p>
 
 						<a href="@Url.Action("Index","Advertisement",
 								new { id = advertisementList[i+1].Id })"
