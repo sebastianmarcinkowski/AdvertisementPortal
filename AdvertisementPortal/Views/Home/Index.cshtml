@@ -1,5 +1,5 @@
 ﻿@using AdvertisementPortal.Core.Models.Domains
-@model IEnumerable<AdvertisementPortal.Core.Models.Domains.Advertisement>
+@model AdvertisementPortal.Core.ViewModels.HomeViewModel
 
 @{
 	ViewData["Title"] = "Strona główna";
@@ -7,9 +7,35 @@
 
 <h1>Lista ogłoszeń</h1>
 
-@if (Model != null && Model.Any())
+@if (Model.Categories != null && Model.Categories.Any())
 {
-	List<Advertisement> advertisementList = Model.ToList();
+
+	<h3 class="mt-3 mb-2">Filtrowanie</h3>
+
+	<form method="post">
+		<div class="row">
+			<div class="col">
+				@Html.TextBoxFor(
+					x => x.Filter.Title,
+					new { @class = "form-control mb-2", placeholder = "Tytuł" })
+			</div>
+			<div class="col">
+				@Html.DropDownListFor(
+					x => x.Filter.CategoryId,
+					new SelectList(Model.Categories, "Id", "Name"),
+					"-- wybierz kategorię --",
+					new { @class = "form-control mb-2" })
+			</div>
+			<div class="col">
+				<button type="submit" class="btn btn-primary mb-2">Szukaj</button>
+			</div>
+		</div>
+	</form>
+
+
+
+
+	List<Advertisement> advertisementList = Model.Advertisements.ToList();
 
 	for (int i = 0; i < advertisementList.Count(); i += 2)
 	{

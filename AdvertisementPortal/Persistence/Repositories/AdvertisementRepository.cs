@@ -21,10 +21,22 @@ namespace AdvertisementPortal.Persistence.Repositories
 				.Include(a => a.User)
 				.First(a => a.Id == advertisementId);
 
-		public IEnumerable<Advertisement> GetAdvertisements()
-			=> _context.Advertisements
-				.Include(a => a.Category)
-				.ToList();
+		public IEnumerable<Advertisement> GetAdvertisements(
+			string title = null,
+			int categoryId = 0)
+		{
+
+			 IQueryable<Advertisement> advertisements = _context.Advertisements
+						.Include(a => a.Category);
+
+			if (!string.IsNullOrWhiteSpace(title))
+				advertisements = advertisements.Where(a => a.Title.Contains(title));
+
+			if (categoryId != 0)
+				advertisements = advertisements.Where(a => a.CategoryId == categoryId);
+
+			return advertisements.ToList();
+		}
 
 		public void Add(Advertisement advertisement)
 			=> _context.Advertisements.Add(advertisement);

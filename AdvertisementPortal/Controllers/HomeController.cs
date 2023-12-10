@@ -8,17 +8,42 @@ namespace AdvertisementPortal.Controllers
 	public class HomeController : Controller
 	{
 		private readonly IAdvertisementService _advertisementService;
+		private readonly ICommentService _commentService;
+		private readonly ICategoryService _categoryService;
 
-		public HomeController(IAdvertisementService advertisementService)
+		public HomeController(
+			IAdvertisementService advertisementService,
+			ICommentService commentService,
+			ICategoryService categoryService)
 		{
 			_advertisementService = advertisementService;
+			_commentService = commentService;
+			_categoryService = categoryService;
 		}
 
 		public IActionResult Index()
 		{
-			var articles = _advertisementService.GetAdvertisements();
+			var homeViewModel = new HomeViewModel
+			{
+				Advertisements = _advertisementService.GetAdvertisements(),
+				Categories = _categoryService.GetCategories()
+			};
 
-			return View(articles);
+			return View(homeViewModel);
+		}
+
+		[HttpPost]
+		public IActionResult Index(HomeViewModel viewModel)
+		{
+			var homeViewModel = new HomeViewModel
+			{
+				Advertisements = _advertisementService.GetAdvertisements(
+					viewModel.Filter.Title,
+					viewModel.Filter.CategoryId),
+				Categories = _categoryService.GetCategories()
+			};
+
+			return View(homeViewModel);
 		}
 
 		public IActionResult Privacy()

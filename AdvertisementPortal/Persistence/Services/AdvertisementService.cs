@@ -16,8 +16,10 @@ namespace AdvertisementPortal.Persistence.Services
 		public Advertisement GetAdvertisement(int advertisementId)
 			=> _unitOfWork.Advertisement.GetAdvertisement(advertisementId);
 
-		public IEnumerable<Advertisement> GetAdvertisements()
-			=> _unitOfWork.Advertisement.GetAdvertisements();
+		public IEnumerable<Advertisement> GetAdvertisements(
+				string title = null,
+				int categoryId = 0)
+			=> _unitOfWork.Advertisement.GetAdvertisements(title, categoryId);
 
 		public void Add(Advertisement advertisement)
 		{
